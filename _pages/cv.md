@@ -35,8 +35,8 @@ Projects
 ======
 * **Construction-Site Safety-Hazard VLM** (Guangdong Heavy Industry, Industry Collaboration), 2025 – Present — *Lead*
   * Pilot VLM that flags safety hazards, cites the violated regulation, and drafts rectification advice; ~35% relative accuracy gain over baseline (internal validation). Qwen3-VL student (LoRA) distilled from a Qwen3-VL-235B-A22B teacher; GEMS data selection; decoupled Agentic RAG (in design).
-* **RedDust — LLM-Agent Accountability &amp; Trust Benchmark** (Independent)
-  * A 12-day survival-shelter benchmark scoring agents on outcome, auditability, and narrative/ethics. Deterministic TypeScript engine powering both a React/Phaser visualization and headless benchmarking, with pluggable Claude/DeepSeek agents and offline LLM-as-judge grading. Controlled ablations (one LLM + 4 scripted baselines, 13 runs) decompose its long-horizon failure into a multi-day lookahead gap — closed by a projection scaffold (0%→100% win) — and a strategic branch-selection gap that explicit hints fail to close.
+
+*RedDust now appears under Publications above (paper in preparation); see the [project page](/portfolio/2-reddust/) for the engine and evaluation design.*
 
 Teaching
 ======

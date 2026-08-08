@@ -1,7 +1,7 @@
 ---
 title: "Contrastive Graph Matching for Domain Adaptive Object Detection"
 collection: publications
-category: manuscripts
+category: conferences
 permalink: /publication/2025-contrastive-graph-matching
 excerpt: 'A contrastive graph-matching approach for domain adaptive object detection.'
 date: 2025-10-01
