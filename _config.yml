@@ -12,7 +12,7 @@ site_theme               : "default" # The available themes options are "default
 title                    : "Yi Cui"
 title_separator          : "-"
 name                     : &name "Yi Cui"
-description              : &description "Yi Cui — Ph.D. student in AI at HKUST (Guangzhou). Trustworthy multimodal evaluation & verification: VLM, process reward models, agentic AI."
+description              : &description "Yi Cui — Ph.D. candidate in AI at HKUST (Guangzhou). Trustworthy multimodal evaluation & verification: VLM, process reward models, agentic AI."
 # Site URL — derived from your GitHub username (username.github.io)
 url                      : https://peter-cui-yi.github.io
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
