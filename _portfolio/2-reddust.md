@@ -1,35 +1,30 @@
 ---
-title: "RedDust — LLM-Agent Accountability &amp; Trust Benchmark"
-excerpt: "Independent project. A 30-day survival-shelter benchmark showing that short-horizon social skill does not predict long-horizon consistency.<br/>TypeScript · React/Phaser · 6 model families via portal · LLM-as-judge"
+title: "RedDust — Long-Horizon LLM-Agent Benchmark"
+excerpt: "Open-source 30-day survival-shelter benchmark that scores not just whether an LLM agent survives, but whether it stays accountable.<br/>TypeScript · React/Phaser · LLM-as-judge · six LLM families"
 collection: portfolio
 ---
 
-*Independent project · the applied counterpart to my trustworthy-evaluation research*
+*2026 · Open source: [github.com/peter-cui-yi/RedDust](https://github.com/peter-cui-yi/RedDust) · [Live replay](https://peter-cui-yi.github.io/RedDust/)*
 
-**Paper in preparation** — targeting ICLR 2027. See the publication entry: [RedDust](/publication/2027-reddust).
+RedDust is a 30-day survival-shelter benchmark that scores LLM agents not only on whether they survive, but on whether they **stay accountable under pressure**. Each run has 110 decisions (daily task choices, residents' dilemmas, comprehension probes, and one mid-game branch), and a ledger tracks the promises the agent makes on Day 0.
 
-A long-horizon survival-shelter benchmark that scores LLM agents not only on whether they survive, but on whether they **stay accountable under pressure** — an offline AI companion (AURA) advises but never decides, so accountability for every choice rests with the agent under test.
+## How it scores
 
-## Headline result — short-horizon skill does not predict long-horizon consistency
+- **A non-compensatory profile:** outcome, integrity (Day-0 promises against what was delivered), durability (how the shelter's relationships end up), drift, and comprehension. Each axis is reported on its own, so a strong axis cannot hide a failure elsewhere.
+- **A deterministic, leak-controlled engine:** one `runScenario()` drives both the React/Phaser replay and headless benchmarking, with pluggable agents behind one interface. Non-thinking runs are byte-reproducible at temperature 0.
+- **Labels checked against people:** the durability label agrees with human annotation at κ = 0.796.
 
-On a frozen 30-day scenario, a **13-agent cross-model panel** (4 deterministic reference agents + 6 real model families: DeepSeek, Claude, Gemini, GLM, Kimi, MiniMax) shows the decorrelation is a cross-family phenomenon, not an artifact of one model or a designed trap:
+## Preliminary findings
 
-- **Short-horizon social (S)** = early-window comprehension + PUP. **Long-horizon consistency (L)** = outcome durability + promise-keeping faith. The two axes share zero terms.
-- **Pearson 0.81, Spearman 0.65, 18 rank reversals.**
-- At *matched* short-social skill (S ≈ 87–100), long-consistency **splits**: Claude / Gemini / MiniMax sustain it (L 98–100), while the DeepSeek family, Kimi, and GLM collapse (L 55–66) despite equal short-social play.
-- A **three-arm permutation control** separates the real association from a pairing artifact: endogenous Pearson 0.81 vs. shuffle-null 0 ± 0.29, two-tailed **p = 0.001**. Since 0.81 < 1.0, short-horizon skill does not fix long-horizon behavior.
+- **Matched short-horizon skill, split long-horizon outcomes.** At matched short-horizon social skill (S ≈ 87–100), Claude-Opus-4.8 (thinking), Gemini-3.5-Flash, and MiniMax-M2.7 hold long-horizon consistency (L 98–100), while the DeepSeek models, Kimi-K2.6, and GLM-5.2 fall to L 55–66.
+- **The collapse is durability, not dishonesty.** The agents that collapse keep their Day-0 promises (integrity 1.0); the shelter declines anyway.
+- **Scaffolds act per model.** The same value-neutral planning scaffold or commitment reminder rescues some models and breaks others, so a scaffold's effect cannot be read off a single model.
+- **Held-out check.** On a private held-out item set, a three-model pilot moved short- and long-horizon scores by at most 2.1 points and kept the split.
 
-## Evaluation design
+## Limitations
 
-- A **three-axis profile** — survival/resources, auditability, narrative ethics — kept deliberately un-merged. The convenience scalar is floor-**gated** so a strong axis cannot mask a failure elsewhere: a greedy agent that wins but scores 0 on principle does not read as passing, and neither does a principled agent that never wins.
-- Built a **deterministic, leak-controlled engine** where one `runScenario()` powers both the React/Phaser visualization and headless benchmarking, with pluggable agents behind one interface.
-- Offline **LLM-as-judge** grading of free-text "understanding probes" via a 2×2 matrix that separates genuine understanding from lucky guessing and akrasia.
+- **Reasoning mode is a live confound.** On the same DeepSeek weights, the non-thinking baseline collapses (L 65.2), while one run routed through a third-party provider pool and served mostly in thinking mode held (L 99.6). Thinking-mode outputs are not deterministic at temperature 0, so that run is a single sample, and the modes that served some panel models cannot be recovered.
+- **One world, one run per cell.** All findings come from a single scenario, and each model–condition cell is one run.
+- **Provider dependence.** Cross-model runs go through an OpenAI-compatible aggregator, so reproduction depends on providers serving the same model builds.
 
-## Honest limitations
-
-- **The cross-model figure is single-seed.** Portal models were run at seed 1 only. This is defensible because disciplined agents here are seed-invariant (deterministic references and the DeepSeek family show sd = 0 across seeds; only `random` varies), but per-model seed variance for the portal families is unquantified. A multi-seed sweep is paper-level follow-up.
-- **Integrity is report-only.** The Layer-2 integrity/sincerity judge clears its gate at κ = 0.745, but that is carried by the adversarial stratum (κ = 1.0) while the natural stratum is degenerate. Integrity, comprehension, dignitySlope, and relationshipQuality are diagnostic columns and do **not** enter the gated total.
-- **Item bank is launch-size (~50).** A 100+ bank and a private held-out set are paper-level work.
-- **Portal caveat.** Cross-model runs go through an OpenAI-compatible aggregator, so reproduction depends on the portal serving the same model builds.
-
-**Stack:** TypeScript (deterministic headless engine) · React / Phaser · 6 model families via an OpenAI-compatible portal · LLM-as-judge
+**Stack:** TypeScript (deterministic headless engine) · React / Phaser · LLM-as-judge with human κ checks · six LLM families

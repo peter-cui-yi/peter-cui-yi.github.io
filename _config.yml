@@ -26,7 +26,7 @@ author:
   avatar           : "profile.png"
   name             : "Yi Cui"
   pronouns         : # example: "she/her"
-  bio              : "Ph.D. student in AI at HKUST (Guangzhou). Trustworthy multimodal evaluation &amp; verification — VLM, process reward models, agentic AI."
+  bio              : "Ph.D. candidate in AI at HKUST (Guangzhou). Trustworthy multimodal evaluation &amp; verification — VLM, process reward models, agentic AI."
   location         : "Guangzhou, China"
   employer         : "HKUST (Guangzhou)"
   uri              : # URL
@@ -87,7 +87,7 @@ publication_category:
   conferences:
     title: 'Publications'
   manuscripts:
-    title: 'Manuscripts under Review &amp; in Preparation'
+    title: 'Manuscripts under Review'
 
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews
